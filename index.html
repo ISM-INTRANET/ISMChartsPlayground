@@ -1,1 +1,197 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chart Lab — Interactive Chart Playground</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<style>
+:root{--bg:#f4f7fb;--panel:#fff;--border:#dce3ec;--text:#182230;--muted:#6b7788;--primary:#2563eb;--primary-dark:#1d4ed8;--danger:#dc2626;--shadow:0 8px 25px rgba(20,35,60,.07)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,select,input,textarea{font:inherit}button{cursor:pointer}.topbar{min-height:68px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:12px 24px;position:sticky;top:0;z-index:100}.brand{display:flex;align-items:center;gap:12px}.brand-icon{width:38px;height:38px;background:var(--primary);color:#fff;border-radius:10px;display:grid;place-items:center;font-weight:800}.brand h1{margin:0;font-size:20px}.brand small{color:var(--muted)}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--border);background:#fff;color:var(--text);padding:9px 13px;border-radius:8px;transition:.15s}.btn:hover{border-color:#b9c5d5;transform:translateY(-1px)}.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn-primary:hover{background:var(--primary-dark)}.btn-danger{color:var(--danger)}
+.app{display:grid;grid-template-columns:280px minmax(400px,1fr) 300px;gap:14px;padding:14px;max-width:1800px;margin:auto}.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}.panel-header{padding:15px 17px;border-bottom:1px solid var(--border);font-weight:700}.panel-body{padding:15px}.control-section{margin-bottom:20px}.control-section h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.field{margin-bottom:11px}.field label{display:block;font-size:12px;font-weight:600;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--border);background:#fff;border-radius:7px;padding:8px 9px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--primary)}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.series-row{display:flex;gap:6px;margin-bottom:6px}.series-row select{flex:1}.remove-series{width:34px;border:1px solid #fecaca;background:#fef2f2;color:var(--danger);border-radius:7px}.chart-panel{min-width:0}.chart-toolbar{padding:12px 15px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:10px}.chart-toolbar-left,.chart-toolbar-right{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.chart-wrapper{position:relative;min-height:570px;padding:20px}.chart-wrapper canvas{width:100%!important;height:540px!important}.mapping-info{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:9px;margin-bottom:12px;font-size:12px;color:#1e40af}.advanced{display:none}.advanced.show{display:block}.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0}.toggle-row label{font-size:12px}.data-panel{margin:0 14px 14px}.data-toolbar{display:flex;gap:7px;padding:12px;border-bottom:1px solid var(--border);flex-wrap:wrap}.table-wrap{overflow:auto;max-height:430px}.data-table{border-collapse:collapse;width:100%;min-width:700px}.data-table th,.data-table td{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:0;white-space:nowrap}.data-table th{background:#f7f9fc;padding:8px;font-size:12px;position:sticky;top:0;z-index:2}.data-table th input{font-weight:700;background:transparent;border:0;width:100%;outline:none}.data-table td input{border:0;width:100%;min-width:110px;padding:8px;background:transparent;outline:none}.data-table td input:focus{background:#eff6ff}.row-number{width:42px;text-align:center;color:var(--muted);background:#f7f9fc;font-size:12px}.status{padding:7px 15px;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}.preset-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.preset-btn{padding:8px;border:1px solid var(--border);background:#fff;border-radius:7px;font-size:12px}.preset-btn:hover{border-color:var(--primary);color:var(--primary)}.footer{text-align:center;color:var(--muted);padding:20px;font-size:12px}.modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:500;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-card{background:#fff;width:min(650px,100%);border-radius:14px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,.2)}.modal-card h2{margin-top:0}.csv-input{width:100%;height:250px;resize:vertical;font-family:monospace;border:1px solid var(--border);border-radius:8px;padding:10px}
+@media(max-width:1200px){.app{grid-template-columns:240px minmax(400px,1fr)}.mapping-panel{grid-column:1/-1}}@media(max-width:800px){.topbar{align-items:flex-start;flex-direction:column;gap:10px}.app{display:flex;flex-direction:column}.chart-wrapper{min-height:420px}.chart-wrapper canvas{height:390px!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="brand"><div class="brand-icon">CL</div><div><h1>Chart Lab</h1><small>Interactive Chart Playground</small></div></div>
+<div class="top-actions">
+<button class="btn" onclick="openCSVModal()">Import CSV</button><button class="btn" onclick="exportCSV()">Export CSV</button><button class="btn" onclick="newDataset()">New Dataset</button><button class="btn btn-primary" onclick="resetDataset()">Reset</button>
+</div>
+</header>
+
+<main class="app">
+<section class="panel">
+<div class="panel-header">Chart Controls</div><div class="panel-body">
+<div class="control-section"><h3>Chart</h3>
+<div class="field"><label>Chart Type</label><select id="chartType">
+<optgroup label="Basic"><option value="bar">Bar</option><option value="horizontalBar">Horizontal Bar</option><option value="line">Line</option><option value="area">Area</option><option value="pie">Pie</option><option value="doughnut">Doughnut</option></optgroup>
+<optgroup label="Comparison"><option value="stackedBar">Stacked Bar</option><option value="percentBar">100% Stacked Bar</option><option value="combo">Bar + Line</option></optgroup>
+<optgroup label="Analytical"><option value="scatter">Scatter</option><option value="bubble">Bubble</option><option value="radar">Radar</option><option value="polarArea">Polar Area</option><option value="histogram">Histogram</option></optgroup>
+</select></div>
+<div class="field"><label>Title</label><input id="chartTitle" value="Monthly Revenue"></div>
+<div class="field"><label>Subtitle</label><input id="chartSubtitle" value=""></div>
+</div>
+
+<div class="control-section"><h3>Appearance</h3>
+<div class="field"><label>Background</label><input type="color" id="backgroundColor" value="#ffffff"></div>
+<div class="field"><label>Opacity <span id="opacityValue">100%</span></label><input type="range" id="opacity" min="10" max="100" value="100"></div>
+<div class="field"><label>Point Size <span id="pointSizeValue">4</span></label><input type="range" id="pointSize" min="1" max="15" value="4"></div>
+<div class="field"><label>Line Thickness <span id="lineWidthValue">3</span></label><input type="range" id="lineWidth" min="1" max="8" value="3"></div>
+</div>
+
+<div class="control-section"><h3>Basic Options</h3>
+<div class="toggle-row"><label>Legend</label><input type="checkbox" id="showLegend" checked></div>
+<div class="toggle-row"><label>Data Labels</label><input type="checkbox" id="showLabels"></div>
+<div class="toggle-row"><label>Gridlines</label><input type="checkbox" id="showGrid" checked></div>
+<div class="toggle-row"><label>Animation</label><input type="checkbox" id="animation" checked></div>
+</div>
+
+<button class="btn" style="width:100%" onclick="toggleAdvanced()">Advanced Settings</button>
+<div id="advancedControls" class="advanced" style="margin-top:15px">
+<div class="control-section"><h3>Axes</h3>
+<div class="field"><label>X-Axis Title</label><input id="xAxisTitle"></div>
+<div class="field"><label>Y-Axis Title</label><input id="yAxisTitle"></div>
+<div class="row"><div class="field"><label>Y Min</label><input type="number" id="yMin"></div><div class="field"><label>Y Max</label><input type="number" id="yMax"></div></div>
+</div>
+<div class="control-section"><h3>Formatting</h3><div class="field"><label>Number Format</label><select id="numberFormat"><option value="normal">Normal</option><option value="integer">Integer</option><option value="percent">Percentage</option><option value="currency">Currency</option></select></div></div>
+</div>
+</div>
+</section>
+
+<section class="panel chart-panel">
+<div class="chart-toolbar"><div class="chart-toolbar-left"><button class="btn" onclick="resetZoom()">Reset Zoom</button><button class="btn" onclick="toggleFullscreen()">Fullscreen</button></div>
+<div class="chart-toolbar-right"><button class="btn" onclick="downloadPNG()">PNG</button><button class="btn" onclick="downloadJPEG()">JPEG</button><button class="btn" onclick="downloadSVG()">SVG</button><button class="btn btn-primary" onclick="downloadPDF()">PDF</button></div></div>
+<div class="chart-wrapper" id="chartContainer"><canvas id="chartCanvas"></canvas></div><div class="status" id="chartStatus">Ready</div>
+</section>
+
+<section class="panel mapping-panel">
+<div class="panel-header">Data Mapping</div><div class="panel-body">
+<div class="mapping-info">Choose exactly which columns control your chart. Changing mappings does not change the underlying data.</div>
+<div class="control-section"><h3>X-Axis</h3><div class="field"><select id="xColumn"></select></div></div>
+<div class="control-section"><h3>Y-Axis / Value</h3><div id="seriesContainer"></div><button class="btn" style="width:100%" onclick="addSeries()">+ Add Y-Series</button></div>
+<div class="control-section"><h3>Special Mapping</h3>
+<div class="field"><label>Size</label><select id="sizeColumn"></select></div>
+<div class="field"><label>Group / Color</label><select id="groupColumn"></select></div>
+<div class="field"><label>Label</label><select id="labelColumn"></select></div>
+</div>
+<div class="control-section"><h3>Presets</h3><div class="preset-grid">
+<button class="preset-btn" onclick="loadPreset('sales')">Sales</button><button class="preset-btn" onclick="loadPreset('company')">Company</button><button class="preset-btn" onclick="loadPreset('hr')">HR</button><button class="preset-btn" onclick="loadPreset('marketing')">Marketing</button><button class="preset-btn" onclick="loadPreset('project')">Project</button><button class="preset-btn" onclick="loadPreset('population')">Population</button><button class="preset-btn" onclick="loadPreset('finance')">Finance</button><button class="preset-btn" onclick="loadPreset('risk')">Risk</button><button class="preset-btn" onclick="loadPreset('banking')">Banking</button>
+</div></div>
+</div></section>
+</main>
+
+<section class="panel data-panel">
+<div class="panel-header">Data Editor</div><div class="data-toolbar">
+<button class="btn" onclick="addRow()">+ Row</button><button class="btn" onclick="addColumn()">+ Column</button><button class="btn btn-danger" onclick="deleteLastRow()">Delete Row</button><button class="btn btn-danger" onclick="deleteLastColumn()">Delete Column</button><button class="btn" onclick="clearData()">Clear Data</button>
+</div><div class="table-wrap"><table class="data-table" id="dataTable"></table></div><div class="status">Tip: Copy a range directly from Excel and paste it into the table.</div>
+</section>
+<div class="footer">Chart Lab — Client-side interactive chart playground</div>
+
+<div class="modal" id="csvModal"><div class="modal-card"><h2>Import CSV</h2><p style="color:#6b7788;font-size:13px">Paste CSV data below. The first row should contain your column names.</p>
+<textarea id="csvInput" class="csv-input" placeholder="Month,Revenue,Expenses&#10;Jan,100000,70000&#10;Feb,115000,72000&#10;Mar,130000,76000"></textarea>
+<div style="display:flex;gap:8px;margin-top:12px"><button class="btn" onclick="closeCSVModal()">Cancel</button><button class="btn btn-primary" onclick="importCSV()">Import</button></div>
+</div></div>
+
+<script>
+Chart.register(ChartDataLabels);
+let chart;
+let data=[
+{Month:"Jan",Revenue:100000,Expenses:70000,Customers:120},
+{Month:"Feb",Revenue:115000,Expenses:72000,Customers:145},
+{Month:"Mar",Revenue:130000,Expenses:76000,Customers:160},
+{Month:"Apr",Revenue:142000,Expenses:79000,Customers:185},
+{Month:"May",Revenue:155000,Expenses:81000,Customers:205},
+{Month:"Jun",Revenue:168000,Expenses:85000,Customers:230}
+];
+let columns=Object.keys(data[0]);
+let selectedSeries=["Revenue"];
+
+document.addEventListener("DOMContentLoaded",()=>{renderTable();updateColumnSelectors();attachEvents();renderChart();});
+
+function attachEvents(){
+document.querySelectorAll("#chartType,#chartTitle,#chartSubtitle,#backgroundColor,#opacity,#pointSize,#lineWidth,#showLegend,#showLabels,#showGrid,#animation,#xAxisTitle,#yAxisTitle,#yMin,#yMax,#numberFormat").forEach(e=>{e.addEventListener("input",renderChart);e.addEventListener("change",renderChart);});
+["xColumn","sizeColumn","groupColumn","labelColumn"].forEach(id=>document.getElementById(id).addEventListener("change",renderChart));
+}
+function renderTable(){
+const table=document.getElementById("dataTable");table.innerHTML="";
+const thead=document.createElement("thead"),hr=document.createElement("tr"),rh=document.createElement("th");rh.textContent="#";hr.appendChild(rh);
+columns.forEach((column,index)=>{const th=document.createElement("th"),input=document.createElement("input");input.value=column;input.addEventListener("change",()=>{const oldName=columns[index],newName=input.value.trim()||oldName;if(newName!==oldName){data.forEach(r=>{r[newName]=r[oldName];delete r[oldName]});columns[index]=newName;renderTable();updateColumnSelectors();renderChart();}});th.appendChild(input);hr.appendChild(th)});thead.appendChild(hr);table.appendChild(thead);
+const tbody=document.createElement("tbody");
+data.forEach((row,ri)=>{const tr=document.createElement("tr"),num=document.createElement("td");num.className="row-number";num.textContent=ri+1;tr.appendChild(num);columns.forEach(c=>{const td=document.createElement("td"),input=document.createElement("input");input.value=row[c]??"";input.addEventListener("input",e=>{let v=e.target.value;if(v!==""&&!isNaN(v))v=Number(v);row[c]=v;renderChart()});td.appendChild(input);tr.appendChild(td)});tbody.appendChild(tr)});table.appendChild(tbody);
+}
+function updateColumnSelectors(){
+["xColumn","sizeColumn","groupColumn","labelColumn"].forEach(id=>{const s=document.getElementById(id),cur=s.value;s.innerHTML='<option value="">None</option>';columns.forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;s.appendChild(o)});if(columns.includes(cur))s.value=cur});
+if(!document.getElementById("xColumn").value&&columns.length)document.getElementById("xColumn").value=columns[0];renderSeriesSelectors();
+}
+function renderSeriesSelectors(){
+const c=document.getElementById("seriesContainer");c.innerHTML="";
+selectedSeries.forEach((series,i)=>{const row=document.createElement("div");row.className="series-row";const s=document.createElement("select");columns.forEach(col=>{const o=document.createElement("option");o.value=col;o.textContent=col;o.selected=col===series;s.appendChild(o)});s.onchange=()=>{selectedSeries[i]=s.value;renderChart()};row.appendChild(s);if(selectedSeries.length>1){const b=document.createElement("button");b.className="remove-series";b.textContent="×";b.onclick=()=>{selectedSeries.splice(i,1);renderSeriesSelectors();renderChart()};row.appendChild(b)}c.appendChild(row)});
+}
+function addSeries(){const a=columns.find(c=>!selectedSeries.includes(c));if(a){selectedSeries.push(a);renderSeriesSelectors();renderChart()}}
+function renderChart(){
+const canvas=document.getElementById("chartCanvas"),ctx=canvas.getContext("2d"),type=document.getElementById("chartType").value;
+const xColumn=document.getElementById("xColumn").value,title=document.getElementById("chartTitle").value,subtitle=document.getElementById("chartSubtitle").value;
+const showLegend=document.getElementById("showLegend").checked,showLabels=document.getElementById("showLabels").checked,showGrid=document.getElementById("showGrid").checked,animation=document.getElementById("animation").checked;
+const pointSize=+document.getElementById("pointSize").value,lineWidth=+document.getElementById("lineWidth").value,background=document.getElementById("backgroundColor").value;
+document.getElementById("opacityValue").textContent=document.getElementById("opacity").value+"%";document.getElementById("pointSizeValue").textContent=pointSize;document.getElementById("lineWidthValue").textContent=lineWidth;
+if(chart)chart.destroy();
+const labels=data.map(r=>r[xColumn]);let chartType=type,datasets=[];
+if(type==="pie"||type==="doughnut"){const s=selectedSeries[0];datasets=[{label:s,data:data.map(r=>+r[s]||0),backgroundColor:generateColors(data.length),borderWidth:1}]}
+else if(type==="scatter"){const x=xColumn,y=selectedSeries[0];datasets=[{label:y,data:data.map(r=>({x:+r[x]||0,y:+r[y]||0})),pointRadius:pointSize,backgroundColor:generateColors(1)[0]}];chartType="scatter"}
+else if(type==="bubble"){const x=xColumn,y=selectedSeries[0],sc=document.getElementById("sizeColumn").value;datasets=[{label:y,data:data.map(r=>({x:+r[x]||0,y:+r[y]||0,r:Math.max(3,Math.sqrt(+r[sc]||5))})),backgroundColor:generateColors(1)[0]}];chartType="bubble"}
+else if(type==="histogram"){const s=selectedSeries[0],values=data.map(r=>+r[s]).filter(v=>!isNaN(v)),bins=createHistogram(values);createChart(ctx,"bar",bins.labels,[{label:s,data:bins.values,backgroundColor:generateColors(1)[0]}],title,subtitle,showLegend,showLabels,showGrid,animation,lineWidth,pointSize,background);return}
+else{selectedSeries.forEach((s,i)=>{let d=data.map(r=>+r[s]||0);if(type==="percentBar")d=data.map(r=>{const total=selectedSeries.reduce((sum,ss)=>sum+(+r[ss]||0),0);return total?((+r[s]||0)/total)*100:0});datasets.push({label:s,data:d,borderWidth:lineWidth,borderRadius:5,pointRadius:pointSize,fill:type==="area",backgroundColor:generateColors(selectedSeries.length)[i],borderColor:generateColors(selectedSeries.length)[i]})});if(type==="horizontalBar"||type==="area"||type==="stackedBar"||type==="percentBar"||type==="combo")chartType=type==="area"?"line":"bar";if(type==="combo"&&datasets.length>1)datasets[1].type="line"}
+createChart(ctx,chartType,labels,datasets,title,subtitle,showLegend,showLabels,showGrid,animation,lineWidth,pointSize,background);
+}
+function createChart(ctx,chartType,labels,datasets,title,subtitle,showLegend,showLabels,showGrid,animation,lineWidth,pointSize,background){
+const selected=document.getElementById("chartType").value,horizontal=selected==="horizontalBar",stacked=selected==="stackedBar",percent=selected==="percentBar",yMin=document.getElementById("yMin").value,yMax=document.getElementById("yMax").value;
+chart=new Chart(ctx,{type:chartType,data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,indexAxis:horizontal?"y":"x",animation:{duration:animation?700:0},plugins:{legend:{display:showLegend,position:"top"},title:{display:!!title,text:title,font:{size:20,weight:"700"},padding:{bottom:6}},subtitle:{display:!!subtitle,text:subtitle},datalabels:{display:showLabels,anchor:"end",align:"top",formatter:v=>formatNumber(v)},tooltip:{enabled:true},zoom:{zoom:{wheel:{enabled:true},pinch:{enabled:true},mode:"xy"},pan:{enabled:true,mode:"xy"}}},scales:(chartType==="pie"||chartType==="doughnut"||chartType==="polarArea")?{}:{x:{stacked:stacked||percent,grid:{display:showGrid},title:{display:!!document.getElementById("xAxisTitle").value,text:document.getElementById("xAxisTitle").value}},y:{stacked:stacked||percent,min:yMin!==""?+yMin:undefined,max:percent?100:(yMax!==""?+yMax:undefined),grid:{display:showGrid},title:{display:!!document.getElementById("yAxisTitle").value,text:document.getElementById("yAxisTitle").value},ticks:{callback:v=>formatNumber(v)}}}}});
+document.getElementById("chartStatus").textContent=`${data.length} rows · ${columns.length} columns · ${datasets.length} series`;
+}
+function formatNumber(v){const f=document.getElementById("numberFormat").value;if(f==="percent")return Number(v).toLocaleString()+"%";if(f==="currency")return "$"+Number(v).toLocaleString();return Number(v).toLocaleString()}
+function generateColors(n){const c=["#2563eb","#16a34a","#f59e0b","#dc2626","#7c3aed","#0891b2","#db2777","#65a30d","#ea580c","#4f46e5"];return Array.from({length:n},(_,i)=>c[i%c.length])}
+function addRow(){const r={};columns.forEach(c=>r[c]="");data.push(r);renderTable();renderChart()}
+function deleteLastRow(){if(data.length>1){data.pop();renderTable();renderChart()}}
+function addColumn(){let name="Column"+(columns.length+1),n=1;while(columns.includes(name)){n++;name="Column"+(columns.length+n)}columns.push(name);data.forEach(r=>r[name]="");renderTable();updateColumnSelectors();renderChart()}
+function deleteLastColumn(){if(columns.length<=1)return;const c=columns.pop();data.forEach(r=>delete r[c]);selectedSeries=selectedSeries.filter(s=>columns.includes(s));if(!selectedSeries.length)selectedSeries=[columns[1]||columns[0]];renderTable();updateColumnSelectors();renderChart()}
+function clearData(){data=[{Column1:"",Column2:""}];columns=["Column1","Column2"];selectedSeries=["Column2"];renderTable();updateColumnSelectors();renderChart()}
+function newDataset(){clearData()}
+function resetDataset(){data=[{Month:"Jan",Revenue:100000,Expenses:70000,Customers:120},{Month:"Feb",Revenue:115000,Expenses:72000,Customers:145},{Month:"Mar",Revenue:130000,Expenses:76000,Customers:160},{Month:"Apr",Revenue:142000,Expenses:79000,Customers:185},{Month:"May",Revenue:155000,Expenses:81000,Customers:205},{Month:"Jun",Revenue:168000,Expenses:85000,Customers:230}];columns=Object.keys(data[0]);selectedSeries=["Revenue"];document.getElementById("chartTitle").value="Monthly Revenue";document.getElementById("chartType").value="bar";renderTable();updateColumnSelectors();renderChart()}
+
+const presets={
+sales:{title:"Monthly Sales",data:[{Month:"Jan",Sales:45000,Orders:320},{Month:"Feb",Sales:52000,Orders:360},{Month:"Mar",Sales:61000,Orders:410},{Month:"Apr",Sales:58000,Orders:395},{Month:"May",Sales:72000,Orders:470},{Month:"Jun",Sales:79000,Orders:510}]},
+company:{title:"Company Performance",data:[{Year:2021,Revenue:850000,Expenses:620000,Profit:230000,Employees:45},{Year:2022,Revenue:980000,Expenses:690000,Profit:290000,Employees:51},{Year:2023,Revenue:1150000,Expenses:780000,Profit:370000,Employees:58},{Year:2024,Revenue:1320000,Expenses:860000,Profit:460000,Employees:64},{Year:2025,Revenue:1480000,Expenses:940000,Profit:540000,Employees:71}]},
+hr:{title:"Department Headcount",data:[{Department:"Finance",Headcount:18,Turnover:4},{Department:"HR",Headcount:12,Turnover:2},{Department:"IT",Headcount:26,Turnover:5},{Department:"Operations",Headcount:42,Turnover:8},{Department:"Marketing",Headcount:16,Turnover:3}]},
+marketing:{title:"Marketing Performance",data:[{Month:"Jan",Spend:12000,Leads:430,Conversions:82,Revenue:36000},{Month:"Feb",Spend:14500,Leads:510,Conversions:96,Revenue:41000},{Month:"Mar",Spend:16000,Leads:580,Conversions:112,Revenue:47000},{Month:"Apr",Spend:15500,Leads:560,Conversions:108,Revenue:45000},{Month:"May",Spend:19000,Leads:680,Conversions:135,Revenue:57000}]},
+project:{title:"Project Progress",data:[{Week:"W1",Planned:10,Completed:7},{Week:"W2",Planned:20,Completed:15},{Week:"W3",Planned:30,Completed:24},{Week:"W4",Planned:40,Completed:35},{Week:"W5",Planned:50,Completed:46}]},
+population:{title:"Population",data:[{Country:"Brunei",Population:460000},{Country:"Singapore",Population:5900000},{Country:"Malaysia",Population:34000000},{Country:"Thailand",Population:71000000},{Country:"Indonesia",Population:280000000}]},
+finance:{title:"Budget vs Actual",data:[{Department:"IT",Budget:250000,Actual:238000},{Department:"HR",Budget:150000,Actual:145000},{Department:"Marketing",Budget:300000,Actual:327000},{Department:"Operations",Budget:450000,Actual:438000},{Department:"Finance",Budget:180000,Actual:172000}]},
+risk:{title:"Risk Categories",data:[{Category:"Operational",Score:62,Incidents:14},{Category:"Financial",Score:48,Incidents:9},{Category:"Cyber",Score:76,Incidents:21},{Category:"Compliance",Score:55,Incidents:12},{Category:"Strategic",Score:41,Incidents:6}]},
+banking:{title:"Banking Portfolio Example",data:[{Segment:"Retail",Exposure:420000000,NPL:2.1,Capital:16.2},{Segment:"SME",Exposure:280000000,NPL:3.4,Capital:15.8},{Segment:"Corporate",Exposure:650000000,NPL:1.8,Capital:17.1},{Segment:"Mortgage",Exposure:510000000,NPL:1.2,Capital:16.8},{Segment:"Consumer",Exposure:190000000,NPL:4.1,Capital:15.4}]}
+};
+function loadPreset(name){const p=presets[name];if(!p)return;data=JSON.parse(JSON.stringify(p.data));columns=Object.keys(data[0]);selectedSeries=columns.length>1?[columns[1]]:[columns[0]];document.getElementById("chartTitle").value=p.title;document.getElementById("chartType").value="bar";renderTable();updateColumnSelectors();renderChart()}
+function openCSVModal(){document.getElementById("csvModal").classList.add("show")}function closeCSVModal(){document.getElementById("csvModal").classList.remove("show")}
+function parseCSV(text){const lines=text.trim().split(/\r?\n/);if(!lines.length)return[];const headers=lines[0].split(",").map(x=>x.trim());return lines.slice(1).map(line=>{const vals=line.split(",").map(x=>x.trim()),r={};headers.forEach((h,i)=>{const v=vals[i]??"";r[h]=v!==""&&!isNaN(v)?Number(v):v});return r})}
+function importCSV(){const imported=parseCSV(document.getElementById("csvInput").value);if(!imported.length){alert("No valid CSV data found.");return}data=imported;columns=Object.keys(data[0]);selectedSeries=columns.length>1?[columns[1]]:[columns[0]];renderTable();updateColumnSelectors();renderChart();closeCSVModal()}
+function exportCSV(){let csv=columns.join(",")+"\n";data.forEach(r=>{csv+=columns.map(c=>`"${String(r[c]??"").replace(/"/g,'""')}"`).join(",")+"\n"});downloadFile(csv,"chart-lab-data.csv","text/csv")}
+function downloadPNG(){downloadDataURL(chart.toBase64Image("image/png",1),"chart-lab.png")}
+function downloadJPEG(){downloadDataURL(chart.toBase64Image("image/jpeg",1),"chart-lab.jpg")}
+function downloadSVG(){const canvas=document.getElementById("chartCanvas"),w=canvas.width,h=canvas.height,img=chart.toBase64Image("image/png"),svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><image href="${img}" width="${w}" height="${h}"/></svg>`;downloadFile(svg,"chart-lab.svg","image/svg+xml")}
+async function downloadPDF(){const{jsPDF}=window.jspdf,canvas=document.getElementById("chartCanvas"),image=canvas.toDataURL("image/png",1),pdf=new jsPDF({orientation:canvas.width>canvas.height?"landscape":"portrait",unit:"px",format:[canvas.width,canvas.height]});pdf.addImage(image,"PNG",0,0,canvas.width,canvas.height);pdf.save("chart-lab.pdf")}
+function downloadDataURL(url,filename){const a=document.createElement("a");a.href=url;a.download=filename;a.click()}
+function downloadFile(content,filename,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url)}
+function createHistogram(values){if(!values.length)return{labels:[],values:[]};const min=Math.min(...values),max=Math.max(...values),count=Math.min(8,Math.max(3,Math.ceil(Math.sqrt(values.length)))),width=(max-min)/count||1,bins=new Array(count).fill(0);values.forEach(v=>{let i=Math.floor((v-min)/width);if(i>=count)i=count-1;bins[i]++});return{labels:bins.map((_,i)=>Math.round(min+i*width)+"–"+Math.round(min+(i+1)*width)),values:bins}}
+function toggleAdvanced(){document.getElementById("advancedControls").classList.toggle("show")}
+function resetZoom(){if(chart&&chart.resetZoom)chart.resetZoom()}
+function toggleFullscreen(){const c=document.getElementById("chartContainer");if(!document.fullscreenElement)c.requestFullscreen();else document.exitFullscreen()}
+document.addEventListener("paste",e=>{const a=document.activeElement;if(a&&a.tagName==="INPUT"&&a.closest(".data-table")){const t=e.clipboardData.getData("text/plain");if(t.includes("\t")){e.preventDefault();pasteExcelData(t)}}});
+function pasteExcelData(text){const rows=text.trim().split(/\r?\n/).map(r=>r.split("\t"));if(!rows.length)return;columns=rows[0].map((h,i)=>h.trim()||"Column"+(i+1));data=rows.slice(1).map(vals=>{const r={};columns.forEach((c,i)=>{const v=vals[i]??"";r[c]=v!==""&&!isNaN(v)?Number(v):v});return r});selectedSeries=columns.length>1?[columns[1]]:[columns[0]];renderTable();updateColumnSelectors();renderChart()}
+</script>
+</body>
+</html>
