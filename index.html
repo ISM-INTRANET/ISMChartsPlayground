@@ -126,6 +126,187 @@ body{background:linear-gradient(180deg,#f8fbff 0%,#f4f7fb 100%);}
 }
 </style>
 
+
+<style id="phase2-ui">
+:root{
+  --p2-primary:#2563eb;
+  --p2-primary-dark:#1d4ed8;
+  --p2-primary-soft:#eff6ff;
+  --p2-ink:#172033;
+  --p2-muted:#64748b;
+  --p2-border:#dbe4ef;
+  --p2-surface:#ffffff;
+  --p2-surface-soft:#f8fafc;
+  --p2-shadow:0 8px 28px rgba(15,39,71,.07);
+}
+body{
+  background:linear-gradient(180deg,#f7faff 0%,#f3f6fa 100%);
+  color:var(--p2-ink);
+}
+.app,.panel,.data-panel,.work-strip,.quick-bar{
+  border-color:var(--p2-border)!important;
+}
+.panel,.data-panel{
+  box-shadow:var(--p2-shadow);
+  border-radius:14px!important;
+}
+.panel-header{
+  font-weight:800!important;
+  letter-spacing:-.01em;
+}
+.section-hint{
+  color:var(--p2-muted)!important;
+}
+.work-strip{
+  background:linear-gradient(135deg,#ffffff,#f7fbff)!important;
+  box-shadow:0 5px 20px rgba(15,39,71,.05)!important;
+}
+.work-strip-title strong{font-weight:800!important;}
+.work-chip{
+  border-radius:999px!important;
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease!important;
+}
+.work-chip:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(37,99,235,.12);
+}
+.work-chip.active{
+  background:var(--p2-primary)!important;
+  color:#fff!important;
+  border-color:var(--p2-primary)!important;
+}
+.quick-bar{
+  background:rgba(255,255,255,.92)!important;
+  backdrop-filter:blur(8px);
+  border-radius:12px!important;
+}
+.quick-chip{
+  transition:.15s ease!important;
+}
+.quick-chip:hover{
+  transform:translateY(-1px);
+  border-color:#93c5fd!important;
+  background:var(--p2-primary-soft)!important;
+}
+.top-actions .btn-primary,
+.btn.btn-primary{
+  box-shadow:0 4px 12px rgba(37,99,235,.18);
+}
+.control-section{
+  border-bottom:1px solid #edf2f7!important;
+}
+.control-section h3{
+  color:#475569!important;
+  font-size:11px!important;
+  letter-spacing:.08em!important;
+}
+.field label{
+  color:#334155!important;
+  font-weight:700!important;
+}
+input,select,textarea{
+  border-color:#d7e0eb!important;
+  border-radius:9px!important;
+}
+input:focus,select:focus,textarea:focus{
+  outline:none!important;
+  border-color:#60a5fa!important;
+  box-shadow:0 0 0 3px rgba(37,99,235,.10)!important;
+}
+.data-table th{
+  background:#f5f8fc!important;
+  color:#334155!important;
+  font-weight:800!important;
+}
+.data-table td:focus{
+  outline:2px solid #93c5fd!important;
+  outline-offset:-2px;
+}
+.chart-toolbar{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:rgba(255,255,255,.96)!important;
+  backdrop-filter:blur(7px);
+}
+.phase2-colour-card{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid var(--p2-border);
+  border-radius:12px;
+  background:var(--p2-surface-soft);
+}
+.phase2-colour-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+.phase2-swatch{
+  width:32px;height:30px;padding:2px;border:1px solid #cbd5e1;border-radius:7px;background:#fff;
+}
+.phase2-theme{
+  width:100%;
+}
+.phase2-help{
+  color:var(--p2-muted);
+  font-size:11px;
+  line-height:1.4;
+  margin-top:6px;
+}
+.phase2-status{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;color:#15803d;
+}
+.phase2-dot{
+  width:7px;height:7px;border-radius:50%;background:#22c55e;
+}
+@media(max-width:900px){
+  .quick-bar{position:static!important;}
+}
+</style>
+
+
+<script id="phase2-startup-guard">
+window.phase2Palette = window.phase2Palette || ["#2563eb","#10b981","#f59e0b","#7c3aed","#ef4444","#06b6d4"];
+</script>
+
+
+<style id="phase3-hd-css">
+#p3TitleSize,#p3SubtitleSize,#p3AxisSize,#p3DataLabelSize,#p3LegendSize{width:100%;}
+.phase3-help{font-size:11px;line-height:1.4;color:#64748b;margin-top:5px;}
+.chart-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.chart-toolbar .export-buttons{display:flex;gap:7px;flex-wrap:wrap;}
+</style>
+
+
+<style id="phase3-hd-fixed-css">
+.chart-toolbar button[data-phase3-hd="png"],
+.chart-toolbar button[data-phase3-hd="jpeg"]{
+  font-weight:800;
+}
+</style>
+
+
+<style id="phase4-usability-css">
+.p4-card{border:1px solid #dbe4ef;border-radius:12px;background:#f8fafc;padding:12px;margin-top:10px}
+.p4-help{font-size:11px;line-height:1.4;color:#64748b;margin-top:5px}
+.p4-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.p4-row label{min-width:105px;font-size:11px;font-weight:700;color:#334155}
+.p4-row input[type=range]{flex:1}
+.p4-value{min-width:42px;text-align:right;font-size:11px;font-weight:800;color:#2563eb}
+.p4-format-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.p4-badge{display:inline-flex;padding:4px 8px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:10px;font-weight:800}
+.p4-editorbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
+.p4-editorbar button{border:1px solid #cbd5e1;background:#fff;border-radius:8px;padding:7px 10px;font-size:11px;font-weight:700;cursor:pointer}
+.p4-editorbar button:hover{background:#eff6ff;border-color:#93c5fd;color:#1d4ed8}
+.p4-editor-status{margin-left:auto;font-size:11px;color:#64748b}
+.p4-col-head{display:flex;align-items:center;gap:5px}
+.p4-col-head input{width:100%;font-weight:800}
+.p4-selected-cell{outline:2px solid #60a5fa!important;outline-offset:-2px}
+@media(max-width:700px){.p4-format-grid{grid-template-columns:1fr}.p4-editor-status{width:100%;margin-left:0}}
+</style>
+
 </head>
 <body>
 <header class="topbar">
@@ -209,13 +390,99 @@ body{background:linear-gradient(180deg,#f8fbff 0%,#f4f7fb 100%);}
 <section class="panel mapping-panel">
 <div class="panel-header">Data Mapping <span class="section-hint">Choose what each column means</span></div><div class="panel-body">
 <div class="mapping-info"><strong>How it works</strong><br>Map your columns below. Your source data stays untouched, and the chart updates instantly.</div>
-<div class="control-section"><h3>X-Axis</h3><div class="field"><select id="xColumn"></select></div></div>
-<div class="control-section"><h3>Y-Axis / Value</h3><div id="seriesContainer"></div><button class="btn" style="width:100%" onclick="addSeries()">+ Add Y-Series</button></div>
+<div class="control-section"><h3>X-AXIS / CATEGORY</h3><div class="field"><label>Horizontal axis</label><select id="xColumn"></select><div class="phase3-help">Choose the column that identifies each bar, point or time period.</div></div></div>
+<div class="control-section"><h3>Y-AXIS / VALUES</h3><div id="seriesContainer"></div><button class="btn" style="width:100%" onclick="addSeries()">+ Add Y-Series</button><div class="phase3-help">Add one or more numeric columns. Each becomes a separate series.</div></div>
 <div class="control-section"><h3>Special Mapping</h3>
 <div class="field"><label>Size</label><select id="sizeColumn"></select></div>
 <div class="field"><label>Group / Color</label><select id="groupColumn"></select></div>
 <div class="field"><label>Label</label><select id="labelColumn"></select></div>
 </div>
+
+
+<div class="control-section">
+  <h3>TEXT & LABELS</h3>
+  <div class="field">
+    <label>Title Size <span id="p3TitleSizeValue">20</span> px</label>
+    <input id="p3TitleSize" type="range" min="12" max="36" value="20">
+  </div>
+  <div class="field">
+    <label>Subtitle Size <span id="p3SubtitleSizeValue">13</span> px</label>
+    <input id="p3SubtitleSize" type="range" min="9" max="24" value="13">
+  </div>
+  <div class="field">
+    <label>Axis & Tick Text <span id="p3AxisSizeValue">12</span> px</label>
+    <input id="p3AxisSize" type="range" min="8" max="22" value="12">
+  </div>
+  <div class="field">
+    <label>Data Label Size <span id="p3DataLabelSizeValue">11</span> px</label>
+    <input id="p3DataLabelSize" type="range" min="8" max="24" value="11">
+  </div>
+  <div class="field">
+    <label>Legend Size <span id="p3LegendSizeValue">12</span> px</label>
+    <input id="p3LegendSize" type="range" min="8" max="22" value="12">
+  </div>
+  <div class="phase3-help">Make chart text readable before exporting it into Word, PowerPoint or reports.</div>
+</div>
+
+
+<div class="control-section" id="phase4Presentation">
+  <h3>TEXT & PRESENTATION</h3>
+  <div class="p4-card">
+    <div class="p4-row"><label>Title</label><input id="p4TitleSize" type="range" min="12" max="36" value="20"><span id="p4TitleVal" class="p4-value">20px</span></div>
+    <div class="p4-row"><label>Axis / Ticks</label><input id="p4AxisSize" type="range" min="8" max="22" value="12"><span id="p4AxisVal" class="p4-value">12px</span></div>
+    <div class="p4-row"><label>Data Labels</label><input id="p4LabelSize" type="range" min="8" max="24" value="11"><span id="p4LabelVal" class="p4-value">11px</span></div>
+    <div class="p4-row"><label>Legend</label><input id="p4LegendSize" type="range" min="8" max="22" value="12"><span id="p4LegendVal" class="p4-value">12px</span></div>
+    <div class="p4-help">Adjust these before exporting. The HD export uses the same presentation settings.</div>
+  </div>
+  <div class="p4-card">
+    <div class="p4-format-grid">
+      <div class="field"><label>Number Format</label>
+        <select id="p4NumberFormat">
+          <option value="auto">Auto</option><option value="integer">Whole number</option>
+          <option value="decimal">2 decimals</option><option value="compact">Compact (1.2K)</option>
+        </select>
+      </div>
+      <div class="field"><label>Data Label Position</label>
+        <select id="p4LabelPosition"><option value="end">End</option><option value="center">Center</option><option value="start">Start</option></select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="control-section">
+  <h3>COLOURS & THEME</h3>
+  <div class="field">
+    <label>Chart Theme</label>
+    <select id="phase2Theme" class="phase2-theme">
+      <option value="corporate">Corporate Blue</option>
+      <option value="ocean">Ocean</option>
+      <option value="forest">Forest</option>
+      <option value="sunset">Sunset</option>
+      <option value="purple">Purple</option>
+      <option value="mono">Monochrome</option>
+      <option value="custom">Custom</option>
+    </select>
+  </div>
+  <div class="phase2-colour-card">
+    <div class="phase2-colour-row">
+      <span style="width:70px;font-size:12px;font-weight:700">Primary</span>
+      <input id="phase2Color1" class="phase2-swatch" type="color" value="#2563eb" title="Primary chart colour">
+      <input id="phase2Hex1" type="text" value="#2563eb" aria-label="Primary hex colour" style="flex:1">
+    </div>
+    <div class="phase2-colour-row">
+      <span style="width:70px;font-size:12px;font-weight:700">Secondary</span>
+      <input id="phase2Color2" class="phase2-swatch" type="color" value="#10b981" title="Secondary chart colour">
+      <input id="phase2Hex2" type="text" value="#10b981" aria-label="Secondary hex colour" style="flex:1">
+    </div>
+    <div class="phase2-colour-row">
+      <span style="width:70px;font-size:12px;font-weight:700">Accent</span>
+      <input id="phase2Color3" class="phase2-swatch" type="color" value="#f59e0b" title="Accent chart colour">
+      <input id="phase2Hex3" type="text" value="#f59e0b" aria-label="Accent hex colour" style="flex:1">
+    </div>
+    <div class="phase2-help">Choose a theme or fine-tune the three main colours. Changes update the chart immediately.</div>
+  </div>
+</div>
+
 <div class="control-section"><h3>WORK AREAS</h3><div class="preset-grid">
 <button class="preset-btn" onclick="loadPreset('application')">Application</button>
 <button class="preset-btn" onclick="loadPreset('revenue')">Revenue</button>
@@ -230,7 +497,19 @@ body{background:linear-gradient(180deg,#f8fbff 0%,#f4f7fb 100%);}
 <section class="panel data-panel">
 <div class="panel-header">Data Editor <span class="section-hint">Edit or paste your data</span></div><div class="data-toolbar">
 <button class="btn" onclick="addRow()">+ Row</button><button class="btn" onclick="addColumn()">+ Column</button><button class="btn btn-danger" onclick="deleteLastRow()">Delete Row</button><button class="btn btn-danger" onclick="deleteLastColumn()">Delete Column</button><button class="btn" onclick="clearData()">Clear Data</button>
-</div><div class="table-wrap"><table class="data-table" id="dataTable"></table></div><div class="status">Tip: Copy a range directly from Excel and paste it into the table.</div>
+</div><div class="table-wrap">
+<div class="p4-editorbar" id="phase4EditorBar">
+  <button type="button" id="p4AddRow">+ Row</button>
+  <button type="button" id="p4DuplicateRow">Duplicate Last</button>
+  <button type="button" id="p4DeleteRow">Delete Last</button>
+  <button type="button" id="p4AddCol">+ Column</button>
+  <button type="button" id="p4RenameCol">Rename Last Column</button>
+  <button type="button" id="p4DeleteCol">Delete Last Column</button>
+  <button type="button" id="p4Paste">Paste Excel / CSV</button>
+  <button type="button" id="p4Clear">Clear Data</button>
+  <span class="p4-editor-status" id="p4EditorStatus">Ready</span>
+</div>
+<table class="data-table" id="dataTable"></table></div><div class="status">Tip: Copy a range directly from Excel and paste it into the table.</div>
 </section>
 <div class="footer">Chart Lab — Client-side interactive chart playground</div>
 
@@ -292,12 +571,67 @@ else{selectedSeries.forEach((s,i)=>{let d=data.map(r=>+r[s]||0);if(type==="perce
 createChart(ctx,chartType,labels,datasets,title,subtitle,showLegend,showLabels,showGrid,animation,lineWidth,pointSize,background);
 }
 function createChart(ctx,chartType,labels,datasets,title,subtitle,showLegend,showLabels,showGrid,animation,lineWidth,pointSize,background){
-const selected=document.getElementById("chartType").value,horizontal=selected==="horizontalBar",stacked=selected==="stackedBar",percent=selected==="percentBar",yMin=document.getElementById("yMin").value,yMax=document.getElementById("yMax").value;
-chart=new Chart(ctx,{type:chartType,data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,indexAxis:horizontal?"y":"x",animation:{duration:animation?700:0},plugins:{legend:{display:showLegend,position:"top"},title:{display:!!title,text:title,font:{size:20,weight:"700"},padding:{bottom:6}},subtitle:{display:!!subtitle,text:subtitle},datalabels:{display:showLabels,anchor:"end",align:"top",formatter:v=>formatNumber(v)},tooltip:{enabled:true},zoom:{zoom:{wheel:{enabled:false},pinch:{enabled:true},mode:"xy"},pan:{enabled:true,mode:"xy"}}},scales:(chartType==="pie"||chartType==="doughnut"||chartType==="polarArea")?{}:{x:{stacked:stacked||percent,grid:{display:showGrid},title:{display:!!document.getElementById("xAxisTitle").value,text:document.getElementById("xAxisTitle").value}},y:{stacked:stacked||percent,min:yMin!==""?+yMin:undefined,max:percent?100:(yMax!==""?+yMax:undefined),grid:{display:showGrid},title:{display:!!document.getElementById("yAxisTitle").value,text:document.getElementById("yAxisTitle").value},ticks:{callback:v=>formatNumber(v)}}}}});
+const selected=document.getElementById("chartType").value,
+horizontal=selected==="horizontalBar",
+stacked=selected==="stackedBar",
+percent=selected==="percentBar",
+yMin=document.getElementById("yMin").value,
+yMax=document.getElementById("yMax").value,
+titleSize=+(document.getElementById("p3TitleSize")?.value||20),
+subtitleSize=+(document.getElementById("p3SubtitleSize")?.value||13),
+axisSize=+(document.getElementById("p3AxisSize")?.value||12),
+dataLabelSize=+(document.getElementById("p3DataLabelSize")?.value||11),
+legendSize=+(document.getElementById("p3LegendSize")?.value||12);
+
+chart=new Chart(ctx,{
+  type:chartType,
+  data:{labels,datasets},
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    indexAxis:horizontal?"y":"x",
+    animation:{duration:animation?700:0},
+    plugins:{
+      legend:{display:showLegend,position:"top",labels:{font:{size:legendSize}}},
+      title:{display:!!title,text:title,font:{size:titleSize,weight:"700"},padding:{bottom:6}},
+      subtitle:{display:!!subtitle,text:subtitle,font:{size:subtitleSize}},
+      datalabels:{
+        display:showLabels,
+        anchor:"end",
+        align:"top",
+        font:{size:dataLabelSize,weight:"600"},
+        formatter:v=>formatNumber(v)
+      },
+      tooltip:{enabled:true},
+      zoom:{zoom:{wheel:{enabled:false},pinch:{enabled:true},mode:"xy"},pan:{enabled:true,mode:"xy"}}
+    },
+    scales:(chartType==="pie"||chartType==="doughnut"||chartType==="polarArea")?{}:{
+      x:{
+        stacked:stacked||percent,
+        grid:{display:showGrid},
+        ticks:{font:{size:axisSize}},
+        title:{display:!!document.getElementById("xAxisTitle").value,text:document.getElementById("xAxisTitle").value,font:{size:axisSize,weight:"600"}}
+      },
+      y:{
+        stacked:stacked||percent,
+        min:yMin!==""?+yMin:undefined,
+        max:percent?100:(yMax!==""?+yMax:undefined),
+        grid:{display:showGrid},
+        ticks:{font:{size:axisSize},callback:v=>formatNumber(v)},
+        title:{display:!!document.getElementById("yAxisTitle").value,text:document.getElementById("yAxisTitle").value,font:{size:axisSize,weight:"600"}}
+      }
+    }
+  }
+});
 document.getElementById("chartStatus").textContent=`${data.length} rows · ${columns.length} columns · ${datasets.length} series`;
 }
 function formatNumber(v){const f=document.getElementById("numberFormat").value;if(f==="percent")return Number(v).toLocaleString()+"%";if(f==="currency")return "$"+Number(v).toLocaleString();return Number(v).toLocaleString()}
-function generateColors(n){const c=["#2563eb","#16a34a","#f59e0b","#dc2626","#7c3aed","#0891b2","#db2777","#65a30d","#ea580c","#4f46e5"];return Array.from({length:n},(_,i)=>c[i%c.length])}
+function generateColors(n){
+  const palette = (window.phase2Palette && window.phase2Palette.length)
+    ? window.phase2Palette
+    : ["#2563eb","#10b981","#f59e0b","#7c3aed","#ef4444","#06b6d4"];
+  return Array.from({length:n}, (_,i) => palette[i % palette.length]);
+}
 function addRow(){const r={};columns.forEach(c=>r[c]="");data.push(r);renderTable();renderChart()}
 function deleteLastRow(){if(data.length>1){data.pop();renderTable();renderChart()}}
 function addColumn(){let name="Column"+(columns.length+1),n=1;while(columns.includes(name)){n++;name="Column"+(columns.length+n)}columns.push(name);data.forEach(r=>r[name]="");renderTable();updateColumnSelectors();renderChart()}
@@ -509,6 +843,458 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+<script id="phase2-functionality">
+(function(){
+  const themes = {
+    corporate:["#2563eb","#10b981","#f59e0b","#7c3aed","#ef4444","#06b6d4"],
+    ocean:["#0f4c81","#168aad","#52b69a","#76c893","#34a0a4","#1a759f"],
+    forest:["#166534","#15803d","#65a30d","#ca8a04","#0f766e","#14532d"],
+    sunset:["#dc2626","#ea580c","#f59e0b","#db2777","#9333ea","#7c2d12"],
+    purple:["#6d28d9","#7c3aed","#a855f7","#c026d3","#db2777","#4f46e5"],
+    mono:["#334155","#475569","#64748b","#94a3b8","#cbd5e1","#1e293b"]
+  };
+
+  function hexValid(v){ return /^#[0-9a-f]{6}$/i.test(v); }
+  function syncColour(idColor,idHex){
+    const c=document.getElementById(idColor), h=document.getElementById(idHex);
+    if(!c || !h) return;
+    c.addEventListener("input",()=>{h.value=c.value; window.phase2ApplyColours();});
+    h.addEventListener("change",()=>{
+      if(hexValid(h.value)){c.value=h.value; window.phase2ApplyColours();}
+      else h.value=c.value;
+    });
+  }
+
+  window.phase2Palette = themes.corporate.slice();
+
+  window.phase2ApplyColours = function(){
+    const theme=document.getElementById("phase2Theme")?.value || "corporate";
+    if(theme !== "custom"){
+      window.phase2Palette = (themes[theme] || themes.corporate).slice();
+    }else{
+      window.phase2Palette = [
+        document.getElementById("phase2Color1")?.value || "#2563eb",
+        document.getElementById("phase2Color2")?.value || "#10b981",
+        document.getElementById("phase2Color3")?.value || "#f59e0b"
+      ];
+    }
+
+    // Update the standard Chart.js default palette used by this app.
+    if(window.Chart){
+      Chart.defaults.backgroundColor = window.phase2Palette[0];
+      Chart.defaults.borderColor = window.phase2Palette[0];
+    }
+    if(typeof renderChart === "function") {
+      try { renderChart(); } catch(e) {}
+    }
+  };
+
+  window.phase2SetTheme = function(theme){
+    const p=themes[theme] || themes.corporate;
+    ["phase2Color1","phase2Color2","phase2Color3"].forEach((id,i)=>{
+      const el=document.getElementById(id);
+      if(el) el.value=p[i];
+    });
+    ["phase2Hex1","phase2Hex2","phase2Hex3"].forEach((id,i)=>{
+      const el=document.getElementById(id);
+      if(el) el.value=p[i];
+    });
+    window.phase2ApplyColours();
+  };
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    syncColour("phase2Color1","phase2Hex1");
+    syncColour("phase2Color2","phase2Hex2");
+    syncColour("phase2Color3","phase2Hex3");
+
+    const t=document.getElementById("phase2Theme");
+    if(t) t.addEventListener("change",()=>{
+      if(t.value==="custom"){
+        window.phase2ApplyColours();
+      }else{
+        window.phase2SetTheme(t.value);
+      }
+    });
+
+    // Prevent the annoying chart mouse-wheel zoom without removing page scrolling.
+    if(window.Chart && Chart.defaults?.plugins?.zoom){
+      Chart.defaults.plugins.zoom.zoom = Chart.defaults.plugins.zoom.zoom || {};
+      Chart.defaults.plugins.zoom.zoom.wheel = Chart.defaults.plugins.zoom.zoom.wheel || {};
+      Chart.defaults.plugins.zoom.zoom.wheel.enabled = false;
+    }
+  });
+})();
+</script>
+
+
+<script id="phase3-hd-export">
+(function(){
+  const EXPORT_W=2400;
+  const EXPORT_H=1350;
+
+  function saveDataURL(url,filename){
+    if(!url) throw new Error("No image data was generated.");
+    const a=document.createElement("a");
+    a.href=url;
+    a.download=filename;
+    a.style.display="none";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  function showExportError(err){
+    console.error("Chart Lab export error:",err);
+    const detail=err && err.message ? " ("+err.message+")" : "";
+    const msg="Export failed"+detail+".";
+    if(typeof window.showToast==="function") window.showToast(msg);
+    else alert(msg);
+  }
+
+  // Clone only plain config objects while preserving functions.
+  // This is important because Chart.js options can contain callback functions
+  // (for example datalabel formatters and tooltip callbacks).
+  function cloneConfig(v,seen=new WeakMap()){
+    if(v===null || typeof v!=="object") return v;
+    if(typeof v==="function") return v;
+    if(seen.has(v)) return seen.get(v);
+    if(Array.isArray(v)){
+      const a=[]; seen.set(v,a);
+      v.forEach(x=>a.push(cloneConfig(x,seen)));
+      return a;
+    }
+    const proto=Object.getPrototypeOf(v);
+    if(proto!==Object.prototype && proto!==null) return v;
+    const o={}; seen.set(v,o);
+    Object.keys(v).forEach(k=>{o[k]=cloneConfig(v[k],seen);});
+    return o;
+  }
+
+  function enlargeFonts(options,factor){
+    const p=options.plugins||{};
+    if(p.title?.font?.size) p.title.font.size*=factor;
+    if(p.subtitle?.font?.size) p.subtitle.font.size*=factor;
+    if(p.legend?.labels?.font?.size) p.legend.labels.font.size*=factor;
+    if(p.datalabels?.font?.size) p.datalabels.font.size*=factor;
+    const scales=options.scales||{};
+    Object.keys(scales).forEach(k=>{
+      const sc=scales[k];
+      if(sc.ticks?.font?.size) sc.ticks.font.size*=factor;
+      if(sc.title?.font?.size) sc.title.font.size*=factor;
+    });
+  }
+
+  function hdCapture(type="image/png",quality=1){
+    if(typeof chart==="undefined" || !chart) throw new Error("Chart is not ready.");
+    if(typeof Chart==="undefined") throw new Error("Chart.js is not loaded.");
+
+    const holder=document.createElement("div");
+    holder.style.position="fixed";
+    holder.style.left="-10000px";
+    holder.style.top="0";
+    holder.style.width=EXPORT_W+"px";
+    holder.style.height=EXPORT_H+"px";
+    holder.style.background="#ffffff";
+    holder.style.pointerEvents="none";
+    holder.style.zIndex="-1";
+
+    const canvas=document.createElement("canvas");
+    canvas.width=EXPORT_W;
+    canvas.height=EXPORT_H;
+    canvas.style.width=EXPORT_W+"px";
+    canvas.style.height=EXPORT_H+"px";
+    holder.appendChild(canvas);
+    document.body.appendChild(holder);
+
+    let exportChart=null;
+    try{
+      // Use the ORIGINAL chart configuration, not resolved chart.options.
+      // chart.options contains Chart.js runtime state; chart.config.options
+      // is the user's clean configuration and is safe to reuse.
+      const sourceOptions=chart.config && chart.config.options
+        ? chart.config.options
+        : {};
+      const sourceData=chart.config && chart.config.data
+        ? chart.config.data
+        : {};
+
+      const options=cloneConfig(sourceOptions);
+      const data=cloneConfig(sourceData);
+
+      options.responsive=false;
+      options.maintainAspectRatio=false;
+      options.animation=false;
+      options.devicePixelRatio=1;
+
+      // The export is a static image, so disable zoom/pan completely.
+      options.plugins=options.plugins||{};
+      options.plugins.zoom={
+        ...(options.plugins.zoom||{}),
+        zoom:{
+          ...((options.plugins.zoom||{}).zoom||{}),
+          wheel:{enabled:false},
+          pinch:{enabled:false},
+          drag:{enabled:false}
+        },
+        pan:{enabled:false}
+      };
+
+      // Scale text up for the 2400px canvas.
+      enlargeFonts(options,1.55);
+
+      options.layout=options.layout||{};
+      options.layout.padding={top:45,right:55,bottom:45,left:55};
+
+      // PNG stays transparent. JPEG gets a white background because JPEG
+      // does not support transparency.
+      const plugins=[];
+      if(type==="image/jpeg"){
+        plugins.push({
+          id:"chartLabJpegBackground",
+          beforeDraw(chartInstance){
+            const ctx=chartInstance.ctx;
+            ctx.save();
+            ctx.globalCompositeOperation="destination-over";
+            ctx.fillStyle="#ffffff";
+            ctx.fillRect(0,0,chartInstance.width,chartInstance.height);
+            ctx.restore();
+          }
+        });
+      }
+
+      exportChart=new Chart(canvas.getContext("2d"),{
+        type:chart.config.type,
+        data:data,
+        options:options,
+        plugins:plugins
+      });
+
+      exportChart.update("none");
+
+      // Force one synchronous draw before reading the canvas.
+      exportChart.draw();
+
+      const url=canvas.toDataURL(type,quality);
+      if(!url || url.length<100) throw new Error("The browser returned an empty image.");
+
+      exportChart.destroy();
+      holder.remove();
+      return url;
+
+    }catch(err){
+      console.error("HD export internal error:",err);
+      try{if(exportChart) exportChart.destroy();}catch(_){}
+      holder.remove();
+      throw err;
+    }
+  }
+
+  window.downloadPNGHD=function(){
+    try{
+      saveDataURL(
+        hdCapture("image/png",1),
+        "chart-lab-HD-2400x1350.png"
+      );
+    }catch(e){showExportError(e);}
+  };
+
+  window.downloadJPEGHD=function(){
+    try{
+      saveDataURL(
+        hdCapture("image/jpeg",1),
+        "chart-lab-HD-2400x1350.jpg"
+      );
+    }catch(e){showExportError(e);}
+  };
+
+  window.downloadPDFHD=function(){
+    try{
+      const url=hdCapture("image/png",1);
+      if(!window.jspdf) throw new Error("PDF library is not available.");
+
+      const img=new Image();
+      img.onload=function(){
+        try{
+          const pdf=new jspdf.jsPDF({
+            orientation:"landscape",
+            unit:"px",
+            format:[EXPORT_W,EXPORT_H]
+          });
+          pdf.addImage(url,"PNG",0,0,EXPORT_W,EXPORT_H);
+          pdf.save("chart-lab-HD-2400x1350.pdf");
+        }catch(e){showExportError(e);}
+      };
+      img.onerror=()=>showExportError(new Error("Could not prepare PDF image."));
+      img.src=url;
+    }catch(e){showExportError(e);}
+  };
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    const bar=document.querySelector(".chart-toolbar .export-buttons")
+      || document.querySelector(".chart-toolbar");
+    if(!bar) return;
+
+    [...bar.querySelectorAll("button")].forEach(b=>{
+      const t=b.textContent.trim().toUpperCase();
+      if(t==="PNG") b.onclick=window.downloadPNGHD;
+      if(t==="JPEG") b.onclick=window.downloadJPEGHD;
+      if(t==="PDF") b.onclick=window.downloadPDFHD;
+    });
+
+    if(!bar.querySelector('[data-phase3-hd="png"]')){
+      const b=document.createElement("button");
+      b.className="btn btn-primary";
+      b.type="button";
+      b.dataset.phase3Hd="png";
+      b.textContent="HD PNG";
+      b.title="2400 × 1350 high-resolution PNG with transparent background";
+      b.addEventListener("click",window.downloadPNGHD);
+      bar.appendChild(b);
+    }
+
+    if(!bar.querySelector('[data-phase3-hd="jpeg"]')){
+      const b=document.createElement("button");
+      b.className="btn";
+      b.type="button";
+      b.dataset.phase3Hd="jpeg";
+      b.textContent="HD JPEG";
+      b.title="2400 × 1350 high-resolution JPEG";
+      b.addEventListener("click",window.downloadJPEGHD);
+      bar.appendChild(b);
+    }
+  });
+})();
+</script>
+
+
+<script id="phase3-typography-events">
+document.addEventListener("DOMContentLoaded",()=>{
+  const ids=["p3TitleSize","p3SubtitleSize","p3AxisSize","p3DataLabelSize","p3LegendSize"];
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.addEventListener("input",()=>{
+      const v=document.getElementById(id+"Value");
+      if(v) v.textContent=el.value;
+      if(typeof renderChart==="function") renderChart();
+    });
+  });
+});
+</script>
+
+
+<script id="phase4-usability-js">
+(function(){
+  const $=id=>document.getElementById(id);
+  const num=v=>Number.isFinite(Number(v))?Number(v):v;
+
+  function updateStatus(text){
+    const el=$("p4EditorStatus");
+    if(el) el.textContent=text || `${Array.isArray(window.data)?data.length:0} rows · ${Array.isArray(window.columns)?columns.length:0} columns`;
+  }
+  function rerender(){
+    if(typeof renderTable==="function") renderTable();
+    if(typeof updateColumnSelectors==="function") updateColumnSelectors();
+    if(typeof renderChart==="function"){try{renderChart();}catch(e){console.error(e)}}
+    updateStatus();
+  }
+  function numericColumns(){
+    if(!Array.isArray(window.columns)||!Array.isArray(window.data)) return [];
+    return columns.filter(c=>data.some(r=>r && r[c]!=="" && r[c]!==null && !isNaN(Number(r[c]))));
+  }
+  function addRow(){
+    const r={}; columns.forEach(c=>r[c]=""); data.push(r); rerender();
+  }
+  function duplicateLast(){
+    if(!data.length){addRow();return}
+    data.push({...data[data.length-1]}); rerender();
+  }
+  function deleteLast(){
+    if(data.length){data.pop();rerender()}
+  }
+  function addCol(){
+    let name="New Column",i=2;
+    while(columns.includes(name)) name=`New Column ${i++}`;
+    columns.push(name); data.forEach(r=>r[name]=""); rerender();
+  }
+  function renameLast(){
+    if(!columns.length)return;
+    const old=columns[columns.length-1];
+    const next=prompt("New column name:",old);
+    if(!next || next===old)return;
+    let name=next.trim(),i=2;
+    while(columns.includes(name)&&name!==old) name=`${next.trim()} ${i++}`;
+    const idx=columns.indexOf(old); columns[idx]=name;
+    data.forEach(r=>{r[name]=r[old];delete r[old]});
+    rerender();
+  }
+  function deleteCol(){
+    if(columns.length<=1)return;
+    const old=columns.pop(); data.forEach(r=>delete r[old]); rerender();
+  }
+  function parsePaste(text){
+    const lines=text.replace(/\r/g,"").split("\n").filter(x=>x.trim());
+    if(!lines.length)return;
+    const delim=lines[0].includes("\t")?"\t":",";
+    const parse=line=>{
+      if(delim==="\t")return line.split("\t");
+      const a=[];let cur="",q=false;
+      for(let i=0;i<line.length;i++){
+        const ch=line[i];
+        if(ch==='"'){if(q&&line[i+1]==='"'){cur+='"';i++}else q=!q}
+        else if(ch===","&&!q){a.push(cur);cur=""}else cur+=ch;
+      }a.push(cur);return a;
+    };
+    const rows=lines.map(parse);
+    const heads=[];rows[0].forEach((h,i)=>{
+      let n=(h||`Column ${i+1}`).trim()||`Column ${i+1}`,b=n,k=2;
+      while(heads.includes(n))n=`${b} ${k++}`;heads.push(n)
+    });
+    window.columns=heads;
+    window.data=rows.slice(1).map(vals=>{
+      const r={};heads.forEach((h,i)=>{
+        const v=vals[i]??"";
+        r[h]=v!==""&&!isNaN(Number(v))?Number(v):v;
+      });return r;
+    });
+    rerender(); updateStatus("Pasted data loaded");
+  }
+  function paste(){
+    const t=prompt("Paste Excel or CSV data here:");
+    if(t)parsePaste(t);
+  }
+  function clearData(){
+    data.forEach(r=>columns.forEach(c=>r[c]=""));rerender();updateStatus("Data cleared");
+  }
+
+  function bindRange(id,valId){
+    const e=$(id),v=$(valId);if(!e)return;
+    const sync=()=>{if(v)v.textContent=e.value+"px";if(typeof renderChart==="function")renderChart()};
+    e.addEventListener("input",sync);sync();
+  }
+
+  function wire(){
+    $("p4AddRow")?.addEventListener("click",addRow);
+    $("p4DuplicateRow")?.addEventListener("click",duplicateLast);
+    $("p4DeleteRow")?.addEventListener("click",deleteLast);
+    $("p4AddCol")?.addEventListener("click",addCol);
+    $("p4RenameCol")?.addEventListener("click",renameLast);
+    $("p4DeleteCol")?.addEventListener("click",deleteCol);
+    $("p4Paste")?.addEventListener("click",paste);
+    $("p4Clear")?.addEventListener("click",clearData);
+    bindRange("p4TitleSize","p4TitleVal");
+    bindRange("p4AxisSize","p4AxisVal");
+    bindRange("p4LabelSize","p4LabelVal");
+    bindRange("p4LegendSize","p4LegendVal");
+    $("p4NumberFormat")?.addEventListener("change",()=>typeof renderChart==="function"&&renderChart());
+    $("p4LabelPosition")?.addEventListener("change",()=>typeof renderChart==="function"&&renderChart());
+    updateStatus();
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",wire);else wire();
+})();
+</script>
 
 </body>
 </html>
